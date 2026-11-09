@@ -1,0 +1,23 @@
+BALATRO — DUAL-ORIENTATION WEB BUILD
+
+Included
+- index.html: your original Balatro HTML game with the iPhone fullscreen/viewport and touch-coordinate update from the second ZIP.
+- sw.js, manifest.webmanifest, icons: installable/offline web-app support.
+- The manifest allows either portrait or landscape orientation.
+
+Important compatibility status
+The portrait-mobile source project is NOT merged into the Lua game in this build. Its patches explicitly target Balatro 1.0.1o, while the game embedded in your HTML is 1.0.2o. Applying the patch set to this game fails on multiple hunks in core files (including game.lua, main.lua, globals.lua, and button_callbacks.lua). Forcing those changes through could leave the game unable to start or cause broken controls.
+
+What this build does provide
+- Full-viewport canvas fitting in portrait and landscape.
+- Viewport/orientation-change handling for iPhone/iPad browsers and Home Screen apps.
+- Existing Emscripten/Love touch event support and the touch-coordinate mapping from the iPhone update.
+- Existing save synchronization and offline PWA support from the iPhone update.
+
+What it does NOT yet provide
+- The portrait-mobile project's three in-game layouts (One-Thumb, Focus, Classic).
+- Its swipe-up-to-play / swipe-down-to-discard behavior or Swipe Only Mode.
+- A true portrait-specific rearrangement of Balatro's Lua game UI. In portrait, the current landscape-oriented game surface is fitted to the viewport and may look stretched/squeezed; this wrapper cannot re-layout the game's internal UI by itself.
+
+Deploy
+For GitHub Pages, upload the contents of this folder to the same repository/path as your existing hosted game. Keep index.html, sw.js, manifest.webmanifest, and both icons together. Test in Safari/Chrome on the actual phone in both orientations. Do not delete the existing Home Screen app or clear site data if you need to preserve its saved data.
